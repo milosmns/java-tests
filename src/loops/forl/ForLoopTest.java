@@ -28,9 +28,12 @@ public class ForLoopTest {
         int count3 = loop3(ls);
         long elapsed3 = System.nanoTime() - startTime3;
 
-        System.out.println("Elapsed1: " + elapsed1 + " ns, item count " + count1);
-        System.out.println("Elapsed2: " + elapsed2 + " ns, item count " + count2);
-        System.out.println("Elapsed3: " + elapsed3 + " ns, item count " + count3);
+        System.out.print("Elapsed1: " + elapsed1 + " ns, item count: " + count1);
+        System.out.println(". Time per item is " + ((float) elapsed1 / (float) count1) + " ns");
+        System.out.print("Elapsed2: " + elapsed2 + " ns, item count: " + count2);
+        System.out.println(". Time per item is " + ((float) elapsed2 / (float) count2) + " ns");
+        System.out.print("Elapsed3: " + elapsed3 + " ns, item count: " + count3);
+        System.out.println(". Time per item is " + ((float) elapsed3 / (float) count3) + " ns");
     }
 
     private static int loop1(List<String> list) {
