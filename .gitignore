@@ -1,0 +1,30 @@
+### IntelliJ IDEA Files ###
+*.iml
+
+## Directory-based project format:
+.idea/
+
+# IntelliJ Generated
+/out/
+
+# mpeltonen/sbt-idea plugin
+.idea_modules/
+
+# JIRA Plugin
+atlassian-ide-plugin.xml
+
+# Crashlytics plugin (for Android Studio and IntelliJ)
+com_crashlytics_export_strings.xml
+crashlytics.properties
+crashlytics-build.properties
+
+### Java ###
+*.class
+
+# Package Files - _ignore for now_ #
+# *.jar
+# *.war
+# *.ear
+
+# Virtual Machine Crash Logs
+hs_err_pid*
