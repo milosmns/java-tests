@@ -1,42 +1,38 @@
+
 package loops.forl;
 
-import java.util.ArrayList;
+import helpers.ListGenerator;
+import helpers.Log;
+
 import java.util.List;
 
+/**
+ * Simple looping test with <i>for</i> loops. Iterating through a {@link String} dataset, counting the number of characters for the whole
+ * dataset in each looping test.
+ */
 public class ForLoopTest {
 
     public static void main(String[] args) {
-        ArrayList<String> ls = new ArrayList<>();
-
-        for (int j = 0; j < 1000000; j++) {
-            ls.add("one");
-            ls.add("two");
-            ls.add("three");
-            ls.add("four");
-            ls.add("five");
-        }
+        List<String> list = ListGenerator.create();
 
         long startTime1 = System.nanoTime();
-        int count1 = loop1(ls);
+        int count1 = loopWithI(list);
         long elapsed1 = System.nanoTime() - startTime1;
 
         long startTime2 = System.nanoTime();
-        int count2 = loop2(ls);
+        int count2 = loopWithISize(list);
         long elapsed2 = System.nanoTime() - startTime2;
 
         long startTime3 = System.nanoTime();
-        int count3 = loop3(ls);
+        int count3 = loopForEach(list);
         long elapsed3 = System.nanoTime() - startTime3;
 
-        System.out.print("Elapsed1: " + elapsed1 + " ns, item count: " + count1);
-        System.out.println(". Time per item is " + ((float) elapsed1 / (float) count1) + " ns");
-        System.out.print("Elapsed2: " + elapsed2 + " ns, item count: " + count2);
-        System.out.println(". Time per item is " + ((float) elapsed2 / (float) count2) + " ns");
-        System.out.print("Elapsed3: " + elapsed3 + " ns, item count: " + count3);
-        System.out.println(". Time per item is " + ((float) elapsed3 / (float) count3) + " ns");
+        Log.logLoopStats("Loop with I, counting size", elapsed1, count1);
+        Log.logLoopStats("Loop with I, not counting size", elapsed2, count2);
+        Log.logLoopStats("For-each loop", elapsed3, count3);
     }
 
-    private static int loop1(List<String> list) {
+    private static int loopWithI(List<String> list) {
         int charCount = 0;
         // noinspection ForLoopReplaceableByForEach
         for (int i = 0; i < list.size(); i++) {
@@ -45,7 +41,7 @@ public class ForLoopTest {
         return charCount;
     }
 
-    private static int loop2(List<String> list) {
+    private static int loopWithISize(List<String> list) {
         int charCount = 0;
         int listCount = list.size();
         // noinspection ForLoopReplaceableByForEach
@@ -55,7 +51,7 @@ public class ForLoopTest {
         return charCount;
     }
 
-    private static int loop3(List<String> list) {
+    private static int loopForEach(List<String> list) {
         int charCount = 0;
         for (String s : list) {
             charCount += s.length();

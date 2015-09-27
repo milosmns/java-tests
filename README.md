@@ -5,6 +5,12 @@ Description
 
 A simple repository with source code for my Java and JVM tests
 
+Importing
+---------
+
+If you are using IntelliJ IDEA, go into project/module properties, then select the *src* folder and mark it as a source folder.
+If you are using Eclipse or any other IDE, you are on your own.
+
 Contributions
 -------------
 
