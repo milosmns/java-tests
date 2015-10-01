@@ -15,7 +15,7 @@ import java.util.ListIterator;
 public class WhileLoopTest {
 
     public static void main(String[] args) {
-        List<String> list = ListGenerator.create();
+        List<String> list = ListGenerator.createStrings();
 
         long startTime1 = System.nanoTime();
         int count1 = loopWithI(list);

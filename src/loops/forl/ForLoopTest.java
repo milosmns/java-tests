@@ -13,7 +13,7 @@ import java.util.List;
 public class ForLoopTest {
 
     public static void main(String[] args) {
-        List<String> list = ListGenerator.create();
+        List<String> list = ListGenerator.createStrings();
 
         long startTime1 = System.nanoTime();
         int count1 = loopWithI(list);

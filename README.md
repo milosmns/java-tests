@@ -3,7 +3,7 @@
 Description
 -----------
 
-A simple repository with source code for my Java and JVM tests
+A simple repository with source code for my Java and JVM tests. Most of the tests are covered with explanations [on my blog](http://angrybyte.me/ "Angry Byte").
 
 Importing
 ---------
