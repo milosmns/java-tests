@@ -90,7 +90,7 @@ public class InheritanceObjectsComparisonTest {
      * another {@link String} {@link #s3} to the bundle. When comparing and calculating the hash code, this class uses {@link #s3} value in
      * combination with values of {@link #s1} and {@link #s2} from {@link InheritanceObjectsComparisonTest.LevelOneClass}.
      */
-    public static class LevelTwoClass extends LevelOneClass {
+    public static class LevelTwoClass extends LevelOneClass implements Cloneable {
 
         /**
          * Additional String in the extended bundle
@@ -145,7 +145,8 @@ public class InheritanceObjectsComparisonTest {
     public static void main(String[] args) {
         // do tests with both classes, several times
         int testItems = 1000000;
-        for (int i = 1; i <= 5; i++) {
+        int testRounds = 5;
+        for (int i = 1; i <= testRounds; i++) {
             long testTimeStart = System.currentTimeMillis();
             System.out.println("STARTING TEST [" + i + "] WITH " + LevelOneClass.class.getSimpleName() + "\n");
             workWith(LevelOneClass.class, testItems);
@@ -162,6 +163,13 @@ public class InheritanceObjectsComparisonTest {
         }
     }
 
+    /**
+     * Does the comparison test, and logs the message for each test performed.
+     * 
+     * @param clazz Which class to use for list elements
+     * @param listItems How many list items will the each list have
+     * @param <T> Parameter type, must be a class that extends the {@link comparison.InheritanceObjectsComparisonTest.LevelOneClass}
+     */
     private static <T extends LevelOneClass> void workWith(Class<? extends T> clazz, int listItems) {
         try {
             // prepare lists for comparison
@@ -200,6 +208,17 @@ public class InheritanceObjectsComparisonTest {
         }
     }
 
+    /**
+     * Compares two lists using different methods available.<br>
+     * <b>Contract</b>: <u>Lists must contain an equal number of items.</u>
+     * 
+     * @param listA First list for comparison
+     * @param listB Second list for comparison
+     * @param method Which method to use. Must be one of {@link #METHOD_EQUALS}, {@link #METHOD_HASH}, {@link #METHOD_SUPER_EQUALS},
+     *            {@link #METHOD_SUPER_HASH}, {@link #METHOD_REFLECTION}
+     * @param <T> Type parameter, a class that must extend {@link comparison.InheritanceObjectsComparisonTest.LevelOneClass}
+     * @return How many items were equal in these two lists
+     */
     private static <T extends LevelOneClass> int compareList(List<T> listA, List<T> listB, int method) {
         int equalTimes = 0;
         int listSize = listA.size();
